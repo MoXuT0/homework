@@ -29,7 +29,7 @@ public class homework {
         int year = 2021;
         if (year % 4 != 0) {
             System.out.println(year + " год не является високосным");
-        } else if (year % 100 == 0 && year % 400 == 0) {
+        } else if (year % 100 == 0 && year % 400 != 0) {
             System.out.println(year + " год не является високосным");
         } else {
             System.out.println(year + " год является високосным");
@@ -37,8 +37,13 @@ public class homework {
 
         // Задание 4
         System.out.println("Задание 4");
-        int deliveryDistance = 95;
-        int deliveryDays = deliveryDistance / 20;
+        int deliveryDistanceTotal = 95;
+        int deliveryDistanceInterval = 40;
+        int deliveryDistanceMinimum = 20;
+        int deliveryDays = 1;
+        if (deliveryDistanceTotal >= deliveryDistanceMinimum) {
+            deliveryDays = (deliveryDays + ((deliveryDistanceMinimum + deliveryDistanceTotal) / deliveryDistanceInterval));
+        }
         System.out.println("Потребуется дней для доставки: " + deliveryDays);
 
         // Задание 5

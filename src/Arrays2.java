@@ -41,8 +41,7 @@ public class Arrays2 {
 
         // Задание 3
         System.out.println("Задание 3");
-        double days = 30.0;
-        double average = total / days;
+        double average = total / (double) arr.length;
         System.out.println("Средняя сумма трат за месяц составила " + average + " рублей");
 
         // Задание 4
@@ -51,7 +50,6 @@ public class Arrays2 {
         for (int i = reverseFullName.length - 1; i >= 0; i--) {
             System.out.print(reverseFullName[i]);
         }
-        System.out.println();
 
     }
 }

@@ -42,8 +42,8 @@ public class Arrays2 {
         // Задание 3
         System.out.println("Задание 3");
         double days = 30.0;
-        double avarage = total / days;
-        System.out.println(avarage);
+        double average = total / days;
+        System.out.println("Средняя сумма трат за месяц составила " + average + " рублей");
 
         // Задание 4
         System.out.println("Задание 4");

@@ -172,10 +172,10 @@ public class EmployeeBook {
         }
     }
 
-    public void addEmployee(Employee EMPLOYEE) {
+    public void addEmployee(Employee employee) {
         for (int i = 0; i < EMPLOYEES.length; i++) {
             if (EMPLOYEES[i] == null) {
-                EMPLOYEES[i] = EMPLOYEE;
+                EMPLOYEES[i] = employee;
                 break;
             }
         }
@@ -202,6 +202,17 @@ public class EmployeeBook {
         for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && employee.getFullName().equals(fullName)) {
                 employee.setDepartment(newDepartment);
+            }
+        }
+    }
+
+    public void getEmployeesFullNameByDepartment() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Сотрудники отдела " + i);
+            for (Employee employee : EMPLOYEES) {
+                if (Objects.nonNull(employee) && employee.getDepartment() == i) {
+                    System.out.println(employee.getFullName());
+                }
             }
         }
     }

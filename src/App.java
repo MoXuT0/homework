@@ -50,7 +50,7 @@ public class App {
         employeeBook.getAllEmployees();
         employeeBook.changeEmployeeSalary("Васильев Василий Васильевич", 39_000);
         employeeBook.changeEmployeeDepartment("Васильев Василий Васильевич", 1);
-        //employeeBook.getEmployeesFullNameByDepartment();
+        employeeBook.getEmployeesFullNameByDepartment();
 
     }
 

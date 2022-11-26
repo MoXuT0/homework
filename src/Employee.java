@@ -4,13 +4,13 @@ public class Employee {
     private int department;
     private double salary;
     private final int id;
-    private static int idCounter;
+    private static int idCounter = 1;
 
     public Employee(String fullName, int department, int salary) {
         this.fullName = fullName;
         this.department = department;
         this.salary = salary;
-        this.id = idCounter++;
+        id = idCounter++;
     }
 
     public String getFullName() {

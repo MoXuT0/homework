@@ -45,7 +45,12 @@ public class App {
         // Очень сложно
         System.out.println("Очень сложно");
 
-
+        employeeBook.addEmployee(new Employee("Васильев Василий Васильевич", 4, 38_000));
+        employeeBook.deleteEmployee("Иванов Иван Иванович", 1);
+        employeeBook.getAllEmployees();
+        employeeBook.changeEmployeeSalary("Васильев Василий Васильевич", 39_000);
+        employeeBook.changeEmployeeDepartment("Васильев Василий Васильевич", 1);
+        //employeeBook.getEmployeesFullNameByDepartment();
 
     }
 

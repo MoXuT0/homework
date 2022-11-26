@@ -75,7 +75,7 @@ public class EmployeeBook {
         for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee)) {
                 double currentSalary = employee.getSalary();
-                employee.setSalary(currentSalary * (percent/100d+1));
+                employee.setSalary(currentSalary * (percent / 100d + 1));
             }
         }
     }
@@ -131,7 +131,7 @@ public class EmployeeBook {
         for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && employee.getDepartment() == department) {
                 double currentSalary = employee.getSalary();
-                employee.setSalary(currentSalary * (percent/100d+1));
+                employee.setSalary(currentSalary * (percent / 100d + 1));
             }
         }
     }
@@ -172,5 +172,38 @@ public class EmployeeBook {
         }
     }
 
-}
+    public void addEmployee(Employee EMPLOYEE) {
+        for (int i = 0; i < EMPLOYEES.length; i++) {
+            if (EMPLOYEES[i] == null) {
+                EMPLOYEES[i] = EMPLOYEE;
+                break;
+            }
+        }
+    }
 
+    public void deleteEmployee(final String fullName, int id) {
+        for (int i = 0; i < EMPLOYEES.length; i++) {
+            if (EMPLOYEES[i].getFullName().equals(fullName) && EMPLOYEES[i].getId() == id) {
+                EMPLOYEES[i] = null;
+                break;
+            }
+        }
+    }
+
+    public void changeEmployeeSalary(final String fullName, double newSalary) {
+        for (Employee employee : EMPLOYEES) {
+            if (Objects.nonNull(employee) && employee.getFullName().equals(fullName)) {
+                employee.setSalary(newSalary);
+            }
+        }
+    }
+
+    public void changeEmployeeDepartment(final String fullName, int newDepartment) {
+        for (Employee employee : EMPLOYEES) {
+            if (Objects.nonNull(employee) && employee.getFullName().equals(fullName)) {
+                employee.setDepartment(newDepartment);
+            }
+        }
+    }
+
+}

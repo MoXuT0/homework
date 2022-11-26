@@ -2,18 +2,18 @@ import java.util.Objects;
 
 public class App {
 
-    public static Employee[] employees = new Employee[10];
+    public static final Employee[] EMPLOYEES = new Employee[10];
 
     public static void main(String[] args) {
 
         // Курсовая работа 1-го курса
         System.out.println("Курсовая работа 1-го курса");
 
-        employees[0] = new Employee("Иванов Иван Иванович", 1,26000);
-        employees[1] = new Employee("Алексеев Алексей Алексеевич", 4,41000);
-        employees[2] = new Employee("Владиславов Владислав Владиславович", 3,35000);
-        employees[3] = new Employee("Артемов Артем Артемович", 4,54000);
-        employees[4] = new Employee("Андреев Андрей Андреевич", 2,32000);
+        EMPLOYEES[0] = new Employee("Иванов Иван Иванович", 1,26_000);
+        EMPLOYEES[1] = new Employee("Алексеев Алексей Алексеевич", 4,41_000);
+        EMPLOYEES[2] = new Employee("Владиславов Владислав Владиславович", 3,35_000);
+        EMPLOYEES[3] = new Employee("Артемов Артем Артемович", 4,54_000);
+        EMPLOYEES[4] = new Employee("Андреев Андрей Андреевич", 2,32_000);
 
         // Базовая сложность
         System.out.println("Базовая сложность");
@@ -35,14 +35,14 @@ public class App {
         indexSalaryByDepartment(10, 4);
         getAllEmployeesByDepartment(4);
         System.out.println("Сотрудники с зарплатой меньше чем 40000");
-        findEmployeesWithSalaryLessThan(40000);
+        findEmployeesWithSalaryLessThan(40_000);
         System.out.println("Сотрудники с зарплатой больше чем или равной 40000");
-        findEmployeesWithSalaryMoreOrEven(40000);
+        findEmployeesWithSalaryMoreOrEven(40_000);
 
     }
 
     private static void getAllEmployees() {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee)) {
                 System.out.println(employee);
             }
@@ -51,7 +51,7 @@ public class App {
 
     private static double countTotalSalary() {
         double totalSalary = 0;
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee)) {
                 totalSalary += employee.getSalary();
             }
@@ -62,7 +62,7 @@ public class App {
     private static Employee findMinSalaryEmployee() {
         double minSalary = Double.MAX_VALUE;
         Employee minSalaryEmployee = null;
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && minSalary > employee.getSalary()) {
                 minSalary = employee.getSalary();
                 minSalaryEmployee = employee;
@@ -74,7 +74,7 @@ public class App {
     private static Employee findMaxSalaryEmployee() {
         double maxSalary = Double.MIN_VALUE;
         Employee maxSalaryEmployee = null;
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && maxSalary < employee.getSalary()) {
                 maxSalary = employee.getSalary();
                 maxSalaryEmployee = employee;
@@ -84,11 +84,20 @@ public class App {
     }
 
     private static double countAverageSalary() {
-        return countTotalSalary() / Employee.getIdCounter();
+        int totalEmployees = 0;
+        for (Employee employee : EMPLOYEES) {
+            if (Objects.nonNull(employee)) {
+                totalEmployees++;
+            }
+        }
+        if (totalEmployees != 0) {
+            return countTotalSalary() / totalEmployees;
+        }
+        return 0;
     }
 
     private static void getFullNameEmployees() {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee)) {
                 System.out.println(employee.getFullName());
             }
@@ -96,7 +105,7 @@ public class App {
     }
 
     private static void indexSalary(int percent) {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee)) {
                 double currentSalary = employee.getSalary();
                 employee.setSalary(currentSalary * (percent/100d+1));
@@ -107,7 +116,7 @@ public class App {
     private static Employee findMinSalaryEmployeeByDepartment(int department) {
         double minSalary = Double.MAX_VALUE;
         Employee minSalaryEmployee = null;
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && minSalary > employee.getSalary() && employee.getDepartment() == department) {
                 minSalary = employee.getSalary();
                 minSalaryEmployee = employee;
@@ -119,7 +128,7 @@ public class App {
     private static Employee findMaxSalaryEmployeeByDepartment(int department) {
         double maxSalary = Double.MIN_VALUE;
         Employee maxSalaryEmployee = null;
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && maxSalary < employee.getSalary() && employee.getDepartment() == department) {
                 maxSalary = employee.getSalary();
                 maxSalaryEmployee = employee;
@@ -130,7 +139,7 @@ public class App {
 
     private static double countTotalSalaryByDepartment(int department) {
         double totalSalary = 0;
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && employee.getDepartment() == department) {
                 totalSalary += employee.getSalary();
             }
@@ -139,19 +148,20 @@ public class App {
     }
 
     private static double countAverageSalaryByDepartment(int department) {
-        double averageSalary = 0;
         int departmentSize = 0;
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && employee.getDepartment() == department) {
-                averageSalary += employee.getSalary();
                 departmentSize++;
             }
         }
-        return averageSalary / departmentSize;
+        if (departmentSize != 0) {
+            return countTotalSalaryByDepartment(department) / departmentSize;
+        }
+        return 0;
     }
 
     private static void indexSalaryByDepartment(int percent, int department) {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && employee.getDepartment() == department) {
                 double currentSalary = employee.getSalary();
                 employee.setSalary(currentSalary * (percent/100d+1));
@@ -160,7 +170,7 @@ public class App {
     }
 
     private static void getAllEmployeesByDepartment(int department) {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && employee.getDepartment() == department) {
                 System.out.println("Сотрудник {" +
                         "Номер = " + employee.getId() +
@@ -172,7 +182,7 @@ public class App {
     }
 
     public static void findEmployeesWithSalaryLessThan(double salary) {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && employee.getSalary() < salary) {
                 System.out.println("Сотрудник {" +
                         "Номер = " + employee.getId() +
@@ -184,7 +194,7 @@ public class App {
     }
 
     public static void findEmployeesWithSalaryMoreOrEven(double salary) {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (Objects.nonNull(employee) && employee.getSalary() >= salary) {
                 System.out.println("Сотрудник {" +
                         "Номер = " + employee.getId() +
@@ -194,4 +204,5 @@ public class App {
             }
         }
     }
+
 }

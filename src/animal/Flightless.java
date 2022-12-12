@@ -56,7 +56,7 @@ public class Flightless extends Avian {
         System.out.println("охотится");
     }
 
-    /*@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -65,13 +65,18 @@ public class Flightless extends Avian {
         if (!super.equals(o))
             return false;
         Flightless that = (Flightless) o;
-        return Objects.equals(movementType, that.movementType);
-    }*/
+        return movementType.equals(that.movementType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), movementType);
+    }
 
     @Override
     public String toString() {
         return "Flightless{" +
-                "name= " + getName() +
+                "name=" + getName() +
                 ", age=" + getAge() +
                 ", livingEnvironment=" + getLivingEnvironment() +
                 ", movementType=" + movementType +

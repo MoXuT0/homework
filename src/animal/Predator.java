@@ -1,5 +1,7 @@
 package animal;
 
+import java.util.Objects;
+
 public class Predator extends Mammal {
     private String foodType;
 
@@ -58,9 +60,23 @@ public class Predator extends Mammal {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Predator predator = (Predator) o;
+        return foodType.equals(predator.foodType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), foodType);
+    }
+
+    @Override
     public String toString() {
         return "Predator{" +
-                "name= " + getName() +
+                "name=" + getName() +
                 ", age=" + getAge() +
                 ", livingEnvironment=" + getLivingEnvironment() +
                 ", movementSpeed=" + getMovementSpeed() +

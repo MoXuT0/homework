@@ -1,7 +1,5 @@
 import animal.*;
-import transport.Bus;
-import transport.Car;
-import transport.Train;
+import transport.*;
 
 import java.time.LocalDate;
 
@@ -90,7 +88,7 @@ public class Oop3 {
         penguin1.sleep();
         penguin1.hunt();
 
-        Flightless penguin2 = new Flightless("Пингвин", 5, "Северный и Южный полюса", "плавает и ходит");
+        Flightless penguin2 = new Flightless("Пингвин", 4, "Северный и Южный полюса", "плавает и ходит");
         isEqual(penguin1, gull);
         isEqual(penguin1, penguin2);
 

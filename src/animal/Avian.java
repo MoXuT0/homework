@@ -1,5 +1,7 @@
 package animal;
 
+import java.util.Objects;
+
 public abstract class Avian extends Animal {
 
     private String livingEnvironment;
@@ -28,6 +30,23 @@ public abstract class Avian extends Animal {
         if (livingEnvironment == null || livingEnvironment.isEmpty() || livingEnvironment.isBlank()) {
             this.livingEnvironment = "default";
         } else this.livingEnvironment = livingEnvironment;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
+        Avian avian = (Avian) o;
+        return livingEnvironment.equals(avian.livingEnvironment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), livingEnvironment);
     }
 
     @Override

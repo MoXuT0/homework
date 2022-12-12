@@ -1,5 +1,7 @@
 package animal;
 
+import java.util.Objects;
+
 public class Herbivore extends Mammal {
     private String foodType;
 
@@ -58,9 +60,23 @@ public class Herbivore extends Mammal {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Herbivore herbivore = (Herbivore) o;
+        return foodType.equals(herbivore.foodType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), foodType);
+    }
+
+    @Override
     public String toString() {
         return "Herbivore{" +
-                "name= " + getName() +
+                "name=" + getName() +
                 ", age=" + getAge() +
                 ", livingEnvironment=" + getLivingEnvironment() +
                 ", movementSpeed=" + getMovementSpeed() +

@@ -48,12 +48,18 @@ public abstract class Animal {
         if (o == null || getClass() != o.getClass())
             return false;
         Animal animal = (Animal) o;
-        return Objects.equals(name, animal.name);
+        return age == animal.age && name.equals(animal.name);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+
     @Override
     public String toString() {
         return "Animal{" +
-                "name='" + name +
+                "name=" + name +
                 ", age=" + age +
                 '}';
     }

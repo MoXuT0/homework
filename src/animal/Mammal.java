@@ -1,5 +1,7 @@
 package animal;
 
+import java.util.Objects;
+
 public abstract class Mammal extends Animal {
 
     private String livingEnvironment;
@@ -45,6 +47,23 @@ public abstract class Mammal extends Animal {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
+        Mammal mammal = (Mammal) o;
+        return Double.compare(mammal.movementSpeed, movementSpeed) == 0 && livingEnvironment.equals(mammal.livingEnvironment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), livingEnvironment, movementSpeed);
+    }
+
+    @Override
     public String toString() {
         return "Mammal{" +
                 "name= " + getName() +
@@ -52,11 +71,6 @@ public abstract class Mammal extends Animal {
                 ", livingEnvironment=" + livingEnvironment +
                 ", movementSpeed=" + movementSpeed +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
     }
 
 }

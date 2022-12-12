@@ -1,7 +1,5 @@
 package transport;
 
-import java.time.LocalDate;
-
 public class Train extends Transport {
 
     private int cost;
@@ -72,9 +70,7 @@ public class Train extends Transport {
     }
 
     public void setDepartureStation(String departureStation) {
-        if (departureStation == null || departureStation.isEmpty() || departureStation.isBlank()) {
-            this.departureStation = "default";
-        } else this.departureStation = departureStation;
+        this.departureStation = Utilities.validateString(departureStation, "default");
     }
 
     public String getArrivalStation () {
@@ -82,19 +78,15 @@ public class Train extends Transport {
     }
 
     public void setArrivalStation (String arrivalStation){
-        if (arrivalStation == null || arrivalStation.isEmpty() || arrivalStation.isBlank()) {
-            this.arrivalStation = "default";
-        } else this.arrivalStation = arrivalStation;
+        this.arrivalStation = Utilities.validateString(arrivalStation, "default");
     }
 
     public int getCarriages () {
         return carriages;
     }
 
-    public void setCarriages ( int carriages){
-        if (carriages <= 0) {
-            this.carriages = 1;
-        } else this.carriages = carriages;
+    public void setCarriages (int carriages){
+        this.carriages = Math.max(carriages, 1);
     }
 
     @Override

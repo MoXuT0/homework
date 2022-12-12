@@ -31,9 +31,7 @@ public abstract class Mammal extends Animal {
     }
 
     public void setLivingEnvironment(String livingEnvironment) {
-        if (livingEnvironment == null || livingEnvironment.isEmpty() || livingEnvironment.isBlank()) {
-            this.livingEnvironment = "default";
-        } else this.livingEnvironment = livingEnvironment;
+        this.livingEnvironment = Utilities.validateString(livingEnvironment, "default");
     }
 
     public double getMovementSpeed() {
@@ -41,9 +39,7 @@ public abstract class Mammal extends Animal {
     }
 
     public void setMovementSpeed(double movementSpeed) {
-        if (movementSpeed <= 0) {
-            this.movementSpeed = 1;
-        } else this.movementSpeed = movementSpeed;
+        this.movementSpeed = Double.max(movementSpeed, 1);
     }
 
     @Override

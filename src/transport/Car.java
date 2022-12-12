@@ -47,15 +47,9 @@ public class Car extends Transport {
         }
 
         public Insurance(LocalDate expirationDate, double cost, String number) {
-            if (expirationDate == null) {
-                this.expirationDate = LocalDate.now().plusDays(365);
-            } else this.expirationDate = expirationDate;
-            if (cost < 0) {
-                this.cost = 0;
-            } else this.cost = cost;
-            if (number == null || number.isEmpty() || number.isBlank()) {
-                this.number = "123456789";
-            } else this.number = number;
+            this.expirationDate = Objects.requireNonNullElseGet(expirationDate, () -> LocalDate.now().plusDays(365));
+            this.cost = Double.max(cost, 0);
+            this.number = Utilities.validateString(number, "123456789");
         }
 
         public LocalDate getExpirationDate() {
@@ -149,9 +143,7 @@ public class Car extends Transport {
             this.body = "default";
         } else this.body = body;
         setRegistration(registration);
-        if (seats <= 0) {
-            this.seats = 1;
-        } else this.seats = seats;
+        this.seats = Math.max(seats, 1);
         setSeasonalTires(seasonalTires);
         this.key = Objects.requireNonNullElseGet(key, Key::new);
         this.insurance = Objects.requireNonNullElseGet(insurance, Insurance::new);
@@ -170,9 +162,7 @@ public class Car extends Transport {
     }
 
     public void setEngineVolume(double engineVolume) {
-        if (engineVolume <= 0) {
-            this.engineVolume = 1.5;
-        } else this.engineVolume = engineVolume;
+        this.engineVolume = Double.max(engineVolume, 1.5);
     }
 
     public String getTransmission() {
@@ -180,9 +170,7 @@ public class Car extends Transport {
     }
 
     public void setTransmission(String transmission) {
-        if (transmission == null || transmission.isEmpty() || transmission.isBlank()) {
-            this.transmission = "default";
-        } else this.transmission = transmission;
+        this.transmission = Utilities.validateString(transmission, "default");
     }
 
     public String getRegistration() {
@@ -190,7 +178,7 @@ public class Car extends Transport {
     }
 
     public void setRegistration(String registration) {
-        if (registration == null) {
+        if (registration == null || registration.isEmpty() || registration.isBlank()) {
             this.registration = "default";
         }else if (!isCorrectRegistration(registration)){
             this.registration = "Неверный номер";

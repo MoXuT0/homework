@@ -27,18 +27,10 @@ public abstract class Transport {
                      String colour,
                      double maxSpeed,
                      double fuelPercentage) {
-        if (brand == null || brand.isEmpty() || brand.isBlank()) {
-            this.brand = "default";
-        } else this.brand = brand;
-        if (model == null || model.isEmpty() || model.isBlank()) {
-            this.model = "default";
-        } else this.model = model;
-        if (manufactureYear <= 0) {
-            this.manufactureYear = 2000;
-        } else this.manufactureYear = manufactureYear;
-        if (country == null || country.isEmpty() || country.isBlank()) {
-            this.country = "Россия";
-        } else this.country = country;
+        this.brand = Utilities.validateString(brand, "default");
+        this.model = Utilities.validateString(model, "default");
+        this.manufactureYear = Math.max(manufactureYear, 2000);
+        this.country = Utilities.validateString(country, "Россия");
         setColour(colour);
         setMaxSpeed(maxSpeed);
         setFuelPercentage(fuelPercentage);
@@ -65,9 +57,7 @@ public abstract class Transport {
     }
 
     public void setColour(String colour) {
-        if (colour == null || colour.isEmpty() || colour.isBlank()) {
-            this.colour = "белый";
-        } else this.colour = colour;
+        this.colour = Utilities.validateString(colour, "белый");
     }
 
     public double getMaxSpeed() {
@@ -75,9 +65,7 @@ public abstract class Transport {
     }
 
     public void setMaxSpeed(double maxSpeed) {
-        if (maxSpeed <= 0) {
-            this.maxSpeed = 1;
-        } else this.maxSpeed = maxSpeed;
+        this.maxSpeed = Double.max(maxSpeed, 0);
     }
 
     public double getFuelPercentage() {

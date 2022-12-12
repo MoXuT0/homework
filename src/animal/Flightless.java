@@ -27,9 +27,7 @@ public class Flightless extends Avian {
     }
 
     public void setMovementType(String movementType) {
-        if (movementType == null || movementType.isEmpty() || movementType.isBlank()) {
-            this.movementType = "default";
-        } else this.movementType = movementType;
+        this.movementType = Utilities.validateString(movementType, "default");
     }
 
     public void walk() {

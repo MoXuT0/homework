@@ -27,9 +27,7 @@ public abstract class Avian extends Animal {
     }
 
     public void setLivingEnvironment(String livingEnvironment) {
-        if (livingEnvironment == null || livingEnvironment.isEmpty() || livingEnvironment.isBlank()) {
-            this.livingEnvironment = "default";
-        } else this.livingEnvironment = livingEnvironment;
+        this.livingEnvironment = Utilities.validateString(livingEnvironment, "default");
     }
 
     @Override

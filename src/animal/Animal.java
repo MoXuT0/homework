@@ -28,9 +28,7 @@ public abstract class Animal {
     }
 
     public void setName(String name) {
-        if (name == null || name.isEmpty() || name.isBlank()) {
-            this.name = "default";
-        } else this.name = name;
+        this.name = Utilities.validateString(name, "default");
     }
 
     public int getAge() {

@@ -30,9 +30,7 @@ public class Herbivore extends Mammal {
     }
 
     public void setFoodType(String foodType) {
-        if (foodType == null || foodType.isEmpty() || foodType.isBlank()) {
-            this.foodType = "default";
-        } else this.foodType = foodType;
+        this.foodType = Utilities.validateString(foodType, "default");
     }
 
     public void graze() {

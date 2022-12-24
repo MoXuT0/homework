@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class App {
 
+    private static final TaskList TASK_LIST = new TaskList();
+
     public static void main(String[] args) {
 
         TaskList taskList = new TaskList();
@@ -20,13 +22,13 @@ public class App {
                     int menu = scanner.nextInt();
                     switch (menu) {
                         case 1:
-                            inputTask(scanner, taskList);
+                            inputTask(scanner);
                             break;
                         case 2:
-                            deleteTask(scanner, taskList);
+                            deleteTask(scanner);
                             break;
                         case 3:
-                            printTasksByDate(scanner, taskList);
+                            printTasksByDate(scanner);
                             break;
                         case 0:
                             break label;
@@ -39,13 +41,11 @@ public class App {
         }
     }
 
-    private static void inputTask(Scanner scanner, TaskList taskList) {
+    private static void inputTask(Scanner scanner) {
         System.out.print("Введите название задачи: ");
-        String title = scanner.next();
-        scanner.nextLine();
+        String title = readString(scanner);
         System.out.print("Введите описание задачи: ");
-        String description = scanner.next();
-        scanner.nextLine();
+        String description = readString(scanner);
         System.out.println("Введите тип задачи: ");
         for (TaskType taskType : TaskType.values()) {
             System.out.println(taskType.ordinal() + ", " + taskType.getName());
@@ -67,25 +67,37 @@ public class App {
         int repeatNumber = Integer.parseInt(repeat);
         Repeatability repeatability = Repeatability.values()[repeatNumber];
         Task task = new Task(title, description, type, dateTime, repeatability);
-        taskList.addTask(task);
+        TASK_LIST.addTask(task);
         System.out.println("Задача успешно добавлена!");
     }
 
-    public static void deleteTask(Scanner scanner, TaskList taskList){
-        System.out.println(taskList.toString());
+    public static void deleteTask(Scanner scanner) {
+        System.out.println(TASK_LIST.toString());
         System.out.print("Введите ID задачи, которую хотите удалить: ");
         int taskId = Integer.parseInt(scanner.next());
-        taskList.removeTask(taskId);
+        TASK_LIST.removeTask(taskId);
         System.out.println("Задача успешно удалена!");
     }
 
-    public static void printTasksByDate(Scanner scanner, TaskList taskList){
+    public static void printTasksByDate(Scanner scanner) {
         System.out.print("Введите дату в формате ГГГГ-ММ-ДД на которую получить задачи: ");
         LocalDate taskDate = LocalDate.parse(scanner.next());
-        System.out.println("Задачи на " + taskDate + ":\n" + taskList.getTasksForDate(taskDate).toString());
+        System.out.println("Задачи на " + taskDate + ":\n" + TASK_LIST.getTasksForDate(taskDate).toString());
     }
 
     private static void printMenu() {
         System.out.println("1. Добавить задачу\n2. Удалить задачу\n3. Показать задачи на указанный день\n" + "0. Выход");
     }
+
+    private static String readString(Scanner scanner) {
+        while (true) {
+            String readString = scanner.nextLine();
+            if (readString == null || readString.isEmpty() || readString.isBlank()) {
+                System.out.println("Неправильное значение");
+            } else {
+                return readString;
+            }
+        }
+    }
+
 }

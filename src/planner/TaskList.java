@@ -1,7 +1,6 @@
 package planner;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -32,7 +31,7 @@ public class TaskList {
     public Set<Task> getTasksForDate(LocalDate date){
         Set<Task> tasksForDate = new HashSet<>();
         for (Task task : taskList.values()) {
-            if (task.nextDateTime(date)) {
+            if (task.nextDate(date)) {
                 tasksForDate.add(task);
             }
         }

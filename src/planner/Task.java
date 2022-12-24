@@ -88,7 +88,7 @@ public class Task implements Repeatable {
     }
 
     @Override
-    public boolean nextDateTime(LocalDate localDate) {
+    public boolean nextDate(LocalDate localDate) {
         switch (repeatability) {
             case SINGLE:
                 return localDate.equals(dateTime.toLocalDate());

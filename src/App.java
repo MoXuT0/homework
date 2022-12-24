@@ -11,8 +11,6 @@ public class App {
 
     public static void main(String[] args) {
 
-        TaskList taskList = new TaskList();
-
         try (Scanner scanner = new Scanner(System.in)) {
             label:
             while (true) {
@@ -72,7 +70,7 @@ public class App {
     }
 
     public static void deleteTask(Scanner scanner) {
-        System.out.println(TASK_LIST.toString());
+        System.out.println(TASK_LIST);
         System.out.print("Введите ID задачи, которую хотите удалить: ");
         int taskId = Integer.parseInt(scanner.next());
         TASK_LIST.removeTask(taskId);
@@ -86,7 +84,7 @@ public class App {
     }
 
     private static void printMenu() {
-        System.out.println("1. Добавить задачу\n2. Удалить задачу\n3. Показать задачи на указанный день\n" + "0. Выход");
+        System.out.println("1. Добавить задачу\n2. Удалить задачу\n3. Получить задачи на указанный день\n" + "0. Выход");
     }
 
     private static String readString(Scanner scanner) {

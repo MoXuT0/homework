@@ -40,10 +40,10 @@ public class Task implements Repeatable {
     }
 
     public void setTitle(String title) {
-        if (title != null && !title.isEmpty() && !title.isBlank()) {
+        if (title == null || title.isEmpty() || title.isBlank()) {
+            throw new IllegalArgumentException("Неправильно указано описание");
+        } else {
             this.title = title;
-        }  else {
-            throw new IllegalArgumentException("Неправильно указан заголовок");
         }
     }
 
@@ -52,10 +52,10 @@ public class Task implements Repeatable {
     }
 
     public void setDescription(String description) {
-        if (description != null && !description.isEmpty() && !description.isBlank()) {
-            this.description = description;
-        }  else {
+        if (description == null || description.isEmpty() || description.isBlank()) {
             throw new IllegalArgumentException("Неправильно указано описание");
+        } else {
+            this.description = description;
         }
     }
 

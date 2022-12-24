@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class TaskList {
 
-    Map<Integer, Task> taskList = new LinkedHashMap<>();
+    private final Map<Integer, Task> taskList = new LinkedHashMap<>();
 
     public void addTask(Task task) {
         if (taskList.containsKey(task.getId())) {
@@ -42,4 +42,5 @@ public class TaskList {
     public String toString() {
         return taskList.values().toString();
     }
+
 }

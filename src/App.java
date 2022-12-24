@@ -44,7 +44,7 @@ public class App {
         String title = readString(scanner);
         System.out.print("Введите описание задачи: ");
         String description = readString(scanner);
-        System.out.println("Введите тип задачи: ");
+        System.out.println("Выберите тип задачи: ");
         for (TaskType taskType : TaskType.values()) {
             System.out.println(taskType.ordinal() + ", " + taskType.getName());
         }
